@@ -13,6 +13,11 @@ const config = {
 
 !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
+/**
+ *
+ * 下のコードはいらないかも
+ */
+
 export const auth = firebase.auth();
 export const Firebase = firebase;
 
