@@ -5,15 +5,15 @@ import "styles/globals.css";
 import { ThemeProvider } from "styled-components";
 import * as theme from "consts/theme";
 
-import { FirebaseProvider } from "utils/firebase";
+import { AuthProvider } from "contexts/Auth";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <FirebaseProvider>
+    <AuthProvider>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
-    </FirebaseProvider>
+    </AuthProvider>
   );
 }
 

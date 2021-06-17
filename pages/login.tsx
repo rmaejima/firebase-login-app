@@ -1,10 +1,10 @@
 import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { GoogleLogin } from "utils/firebase";
-import { FirebaseContext } from "contexts/FirebaseContext";
+import { AuthContext } from "contexts/Auth";
 
 const LoginPage = () => {
-  const { user } = useContext(FirebaseContext);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
     if (user) {
