@@ -1,6 +1,10 @@
 import React, { useReducer, useEffect } from "react";
-
 import { AppProps } from "next/app";
+import "ress";
+
+import "styles/globals.css";
+import { ThemeProvider } from "styled-components";
+import * as theme from "consts/theme";
 
 import AuthContext from "lib/AuthContext";
 import authReducer from "lib/authReducer";
@@ -16,7 +20,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   return (
     <AuthContext.Provider value={state}>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </AuthContext.Provider>
   );
 }

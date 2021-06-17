@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
+
 import { Login, Logout, auth } from "utils/firebase";
 
 const IndexPage: React.VFC = () => {
