@@ -1,18 +1,14 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { Login, Logout, auth } from "utils/firebase";
+import { Login, auth } from "utils/firebase";
 
-const IndexPage: React.VFC = () => {
+const LoginPage = () => {
   const router = useRouter();
   useEffect(() => {
-    // if not logged in, redirect to login page
+    // if logged in, redirect to home
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log("認証できてる");
-      } else {
-        console.log("ログインしてない");
-        router.push("/login");
+        router.push("/");
       }
     });
   }, []);
@@ -21,7 +17,6 @@ const IndexPage: React.VFC = () => {
       <h1>Firebaseを用いてログイン</h1>
       <div>
         <button onClick={() => Login()}>ログイン</button>
-        <button onClick={() => Logout()}>ログアウト</button>
       </div>
       <div>
         <pre>
@@ -30,11 +25,8 @@ const IndexPage: React.VFC = () => {
             : "ログインしていません"}
         </pre>
       </div>
-      <Link href="/edit">
-        <a>編集ページへ移動</a>
-      </Link>
     </>
   );
 };
 
-export default IndexPage;
+export default LoginPage;
