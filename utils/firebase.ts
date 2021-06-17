@@ -12,12 +12,6 @@ const config = {
 };
 
 !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-
-/**
- *
- * 下のコードはいらないかも
- */
-
 export const auth = firebase.auth();
 export const Firebase = firebase;
 
@@ -66,6 +60,6 @@ export const firebaseUser = () => {
 // Logout
 export const Logout = () => {
   auth.signOut().then(() => {
-    window.location.reload();
+    window.location.href = "/login";
   });
 };

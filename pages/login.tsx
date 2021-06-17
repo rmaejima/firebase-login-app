@@ -1,12 +1,16 @@
 import { useEffect } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { Login, auth } from "utils/firebase";
 
 const LoginPage = () => {
+  const router = useRouter();
   useEffect(() => {
-    if (auth.currentUser) {
-      Router.push("/");
-    }
+    // if logged in, redirect to home
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.push("/");
+      }
+    });
   }, []);
   return (
     <>
