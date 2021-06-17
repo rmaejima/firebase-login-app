@@ -19,7 +19,7 @@ const IndexPage: React.VFC = () => {
     });
   }, []);
   return (
-    <>
+    <Container>
       <h1>Firebaseを用いてログイン</h1>
       <div>
         <button onClick={() => Login()}>ログイン</button>
@@ -35,8 +35,12 @@ const IndexPage: React.VFC = () => {
       <Link href="/edit">
         <a>編集ページへ移動</a>
       </Link>
-    </>
+    </Container>
   );
 };
 
 export default IndexPage;
+
+const Container = styled.div`
+  background-color: ${(p) => p.theme.colors.primary[500]};
+`;
