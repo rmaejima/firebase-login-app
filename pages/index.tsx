@@ -1,28 +1,34 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { Login, Logout, auth } from "utils/firebase";
+import { Logout, auth } from "utils/firebase";
+import { FirebaseContext } from "contexts/FirebaseContext";
 
 const IndexPage: React.VFC = () => {
   const router = useRouter();
+  const { user } = useContext(FirebaseContext);
   useEffect(() => {
     // if not logged in, redirect to login page
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("認証できてる");
-      } else {
-        console.log("ログインしてない");
-        router.push("/login");
-      }
-    });
+    // auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     console.log("認証できてる");
+    //   } else {
+    //     console.log("ログインしてない");
+    //     router.push("/login");
+    //   }
+    if (user) {
+      console.log("認証できてる");
+    } else {
+      console.log("ログインしてない");
+      router.push("/login");
+    }
   }, []);
   return (
     <Container>
-      <h1>Firebaseを用いてログイン</h1>
+      <h1>Firebaseを用いてログインするアプリ</h1>
       <div>
-        <button onClick={() => Login()}>ログイン</button>
         <button onClick={() => Logout()}>ログアウト</button>
       </div>
       <div>
