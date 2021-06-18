@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 
 import { auth } from "utils/firebase";
+import { LoadingSpinner } from "components/common/LoadingSpinner";
 
 interface AuthContextType {
   user: firebase.User | null;
@@ -26,7 +27,7 @@ export const AuthProvider: React.VFC<Props> = ({ children }) => {
     });
   }, []);
   if (pending) {
-    return <div>ローディング中...</div>;
+    return <LoadingSpinner size="100px" color="#2929" />;
   }
   return (
     <AuthContext.Provider

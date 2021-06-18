@@ -5,6 +5,7 @@ import { AuthContext } from "contexts/Auth";
 import { LoginWithGoogle } from "components/LoginWithGoogle";
 import { LoginWithEmail } from "components/LoginWithEmail";
 import { SignUpWithEmail } from "components/SignUpWithEmail";
+import { LoadingSpinner } from "components/common/LoadingSpinner";
 
 const LoginPage = () => {
   const { user } = useContext(AuthContext);
