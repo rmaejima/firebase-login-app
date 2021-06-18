@@ -1,29 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { Login, auth } from "utils/firebase";
+
+import { AuthContext } from "contexts/Auth";
+import { LoginWithGoogle } from "components/LoginWithGoogle";
+import { LoginWithEmail } from "components/LoginWithEmail";
+import { SignUpWithEmail } from "components/SignUpWithEmail";
 
 const LoginPage = () => {
+  const { user } = useContext(AuthContext);
   const router = useRouter();
+
   useEffect(() => {
-    // if logged in, redirect to home
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        router.push("/");
-      }
-    });
-  }, []);
+    user && router.push("/");
+  }, [{ user }]);
+
   return (
     <>
       <h1>Firebaseを用いてログイン</h1>
       <div>
-        <button onClick={() => Login()}>ログイン</button>
+        <LoginWithGoogle />
       </div>
       <div>
-        <pre>
-          {auth.currentUser
-            ? auth.currentUser.displayName + "でログインしています"
-            : "ログインしていません"}
-        </pre>
+        <LoginWithEmail />
+      </div>
+      <div>
+        <SignUpWithEmail />
       </div>
     </>
   );

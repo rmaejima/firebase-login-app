@@ -1,35 +1,31 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { Login, Logout, auth } from "utils/firebase";
+import { Logout } from "utils/firebase";
+import { AuthContext } from "contexts/Auth";
 
 const IndexPage: React.VFC = () => {
   const router = useRouter();
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    // if not logged in, redirect to login page
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("認証できてる");
-      } else {
-        console.log("ログインしてない");
-        router.push("/login");
-      }
-    });
+    !user && router.push("/login");
   }, []);
+
   return (
     <Container>
-      <h1>Firebaseを用いてログイン</h1>
+      <h1>
+        Firebase Authentification を使ってログイン認証(Email or
+        Googleアカウント)を行うアプリ
+      </h1>
       <div>
-        <button onClick={() => Login()}>ログイン</button>
         <button onClick={() => Logout()}>ログアウト</button>
       </div>
       <div>
         <pre>
-          {auth.currentUser
-            ? auth.currentUser.displayName + "でログインしています"
-            : "ログインしていません"}
+          {user ? user.email + "でログインしています" : "ログインしていません"}
         </pre>
       </div>
       <Link href="/edit">

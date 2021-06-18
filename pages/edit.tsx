@@ -1,25 +1,24 @@
-import { Login, Logout, auth } from "utils/firebase";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
-const IndexPage = () => {
+import { AuthContext } from "contexts/Auth";
+
+const EditPage = () => {
   const router = useRouter();
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    // if not logged in, redirect to login page
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log("認証できてる");
-      } else {
-        console.log("ログインしてない");
-        router.push("/login");
-      }
-    });
+    !user && router.push("/login");
   }, []);
+
   return (
     <>
       <p>編集ページ</p>
+      <Link href="/">トップへ戻る</Link>
     </>
   );
 };
 
-export default IndexPage;
+export default EditPage;

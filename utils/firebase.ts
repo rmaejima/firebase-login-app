@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/auth"; // If you need it
 
 const config = {
@@ -15,46 +15,31 @@ const config = {
 export const auth = firebase.auth();
 export const Firebase = firebase;
 
-export const Login = () => {
+// Sign Up
+export const EmailSignUp = async (email: string, password: string) => {
+  try {
+    await auth.createUserWithEmailAndPassword(email, password);
+  } catch (err) {
+    alert(err);
+  }
+};
+
+// Login
+export const GoogleLogin = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(function (result: any) {
-      return result;
-    })
-    .catch(function (error) {
-      console.log(error);
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    });
+  try {
+    await auth.signInWithPopup(provider);
+  } catch (err) {
+    alert(err);
+  }
 };
 
-// ログイン状態の検知
-export const listenAuthState = (dispatch: any) => {
-  return firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      // User is signed in.
-      dispatch({
-        type: "login",
-        payload: {
-          user,
-        },
-      });
-    } else {
-      // User is signed out.
-      // ...
-      dispatch({
-        type: "logout",
-      });
-    }
-  });
-};
-
-export const firebaseUser = () => {
-  return firebase.auth().currentUser;
+export const EmailLogin = async (email: string, password: string) => {
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+  } catch (err) {
+    alert(err);
+  }
 };
 
 // Logout
