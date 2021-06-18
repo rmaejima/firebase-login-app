@@ -15,7 +15,16 @@ const config = {
 export const auth = firebase.auth();
 export const Firebase = firebase;
 
-// login
+// Sign Up
+export const EmailSignUp = async (email: string, password: string) => {
+  try {
+    await auth.createUserWithEmailAndPassword(email, password);
+  } catch (err) {
+    alert(err);
+  }
+};
+
+// Login
 export const GoogleLogin = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   try {

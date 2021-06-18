@@ -1,26 +1,30 @@
 import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { GoogleLogin } from "utils/firebase";
+
 import { AuthContext } from "contexts/Auth";
+import { LoginWithGoogle } from "components/LoginWithGoogle";
+import { LoginWithEmail } from "components/LoginWithEmail";
+import { SignUpWithEmail } from "components/SignUpWithEmail";
 
 const LoginPage = () => {
   const { user } = useContext(AuthContext);
   const router = useRouter();
+
   useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
+    user && router.push("/");
   }, [{ user }]);
+
   return (
     <>
       <h1>Firebaseを用いてログイン</h1>
       <div>
-        <button onClick={() => GoogleLogin()}>Googleでログイン</button>
+        <LoginWithGoogle />
       </div>
       <div>
-        <pre>
-          {user ? user + "でログインしています" : "ログインしていません"}
-        </pre>
+        <LoginWithEmail />
+      </div>
+      <div>
+        <SignUpWithEmail />
       </div>
     </>
   );

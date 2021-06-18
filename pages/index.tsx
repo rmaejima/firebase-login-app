@@ -1,22 +1,19 @@
 import Link from "next/link";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { Logout, auth } from "utils/firebase";
+import { Logout } from "utils/firebase";
 import { AuthContext } from "contexts/Auth";
 
 const IndexPage: React.VFC = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    if (user) {
-      console.log("認証できてる");
-    } else {
-      console.log("ログインしてない");
-      router.push("/login");
-    }
+    !user && router.push("/login");
   }, []);
+
   return (
     <Container>
       <h1>
@@ -28,9 +25,7 @@ const IndexPage: React.VFC = () => {
       </div>
       <div>
         <pre>
-          {auth.currentUser
-            ? auth.currentUser.displayName + "でログインしています"
-            : "ログインしていません"}
+          {user ? user.email + "でログインしています" : "ログインしていません"}
         </pre>
       </div>
       <Link href="/edit">
