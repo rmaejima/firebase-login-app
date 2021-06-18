@@ -11,7 +11,7 @@ export const LoginWithEmail: React.VFC = () => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       await EmailLogin(email.value, password.value);
-      router.push("/login");
+      router.push("/");
     },
     [router]
   );
