@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth"; // If you need it
+import "firebase/storage";
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -13,6 +14,7 @@ const config = {
 
 !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 export const auth = firebase.auth();
+export const storage = firebase.storage();
 export const Firebase = firebase;
 
 // Sign Up
