@@ -2,10 +2,9 @@ import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { AuthContext } from "contexts/Auth";
-import { LoginWithGoogle } from "components/LoginWithGoogle";
-import { LoginWithEmail } from "components/LoginWithEmail";
-import { SignUpWithEmail } from "components/SignUpWithEmail";
-import { LoadingSpinner } from "components/common/LoadingSpinner";
+import { LoginWithGoogle } from "components/login/LoginWithGoogle";
+import { LoginWithEmail } from "components/login/LoginWithEmail";
+import { SignUpWithEmail } from "components/signup/SignUpWithEmail";
 
 const LoginPage = () => {
   const { user } = useContext(AuthContext);

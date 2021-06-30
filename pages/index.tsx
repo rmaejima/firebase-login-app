@@ -5,34 +5,41 @@ import styled from "styled-components";
 
 import { Logout } from "utils/firebase";
 import { AuthContext } from "contexts/Auth";
+import { LoadingSpinner } from "components/common/LoadingSpinner";
 
 const IndexPage: React.VFC = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
+  //もう少しいい方法がありそう
   useEffect(() => {
     !user && router.push("/login");
   }, []);
-
-  return (
-    <Container>
-      <h1>
-        Firebase Authentification を使ってログイン認証(Email or
-        Googleアカウント)を行うアプリ
-      </h1>
-      <div>
-        <button onClick={() => Logout()}>ログアウト</button>
-      </div>
-      <div>
-        <pre>
-          {user ? user.email + "でログインしています" : "ログインしていません"}
-        </pre>
-      </div>
-      <Link href="/edit">
-        <a>編集ページへ移動</a>
-      </Link>
-    </Container>
-  );
+  if (!user) {
+    return <LoadingSpinner />;
+  } else {
+    return (
+      <Container>
+        <h1>
+          Firebase Authentification を使ってログイン認証(Email or
+          Googleアカウント)を行うアプリ
+        </h1>
+        <div>
+          <button onClick={() => Logout()}>ログアウト</button>
+        </div>
+        <div>
+          <pre>
+            {user
+              ? user.email + "でログインしています"
+              : "ログインしていません"}
+          </pre>
+        </div>
+        <Link href="/edit">
+          <a>編集ページへ移動</a>
+        </Link>
+      </Container>
+    );
+  }
 };
 
 export default IndexPage;
