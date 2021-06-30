@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { UploadImage } from "components/UploadImage";
+import { UploadImage } from "components/edit/UploadImage";
 
 import { AuthContext } from "contexts/Auth";
 
