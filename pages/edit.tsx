@@ -3,6 +3,8 @@ import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+import { UploadImage } from "components/UploadImage";
+
 import { AuthContext } from "contexts/Auth";
 
 const EditPage = () => {
@@ -15,8 +17,10 @@ const EditPage = () => {
 
   return (
     <>
-      <p>編集ページ</p>
-      <Link href="/">トップへ戻る</Link>
+      <UploadImage />
+      <Link href="/">
+        <h1>トップへ戻る</h1>
+      </Link>
     </>
   );
 };
