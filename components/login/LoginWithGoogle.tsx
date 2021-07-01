@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { googleLogin } from "utils/login";
+import { googleLogin } from "utils/auth/login";
 
 export const LoginWithGoogle: React.VFC = () => {
   const router = useRouter();

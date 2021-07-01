@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { emailLogin } from "utils/login";
+import { emailLogin } from "utils/auth/login";
 
 export const LoginWithEmail: React.VFC = () => {
   const router = useRouter();

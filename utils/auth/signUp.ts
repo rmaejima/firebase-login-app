@@ -1,4 +1,4 @@
-import { auth } from "./firebase";
+import { auth } from "../firebase";
 
 export const emailSignUp = async (email: string, password: string) => {
   try {

@@ -1,4 +1,4 @@
-import { Firebase, auth } from "./firebase";
+import { Firebase, auth } from "../firebase";
 
 // google
 export const googleLogin = async () => {

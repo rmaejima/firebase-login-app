@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { logout } from "utils/logout";
+import { logout } from "utils/auth/logout";
 import { AuthContext } from "contexts/Auth";
 import { LoadingSpinner } from "components/common/LoadingSpinner";
 
