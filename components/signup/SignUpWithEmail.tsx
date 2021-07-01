@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { EmailSignUp } from "utils/firebase";
+import { emailSignUp } from "utils/signUp";
 
 export const SignUpWithEmail: React.VFC = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ export const SignUpWithEmail: React.VFC = () => {
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
-      await EmailSignUp(email.value, password.value);
+      await emailSignUp(email.value, password.value);
       router.push("/login");
     },
     [router]

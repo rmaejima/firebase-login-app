@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { GoogleLogin } from "utils/firebase";
+import { googleLogin } from "utils/login";
 
 export const LoginWithGoogle: React.VFC = () => {
   const router = useRouter();
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();
-      await GoogleLogin();
+      await googleLogin();
       router.push("/");
     },
     [router]

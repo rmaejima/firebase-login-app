@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import "firebase/auth"; // If you need it
+import "firebase/auth";
 import "firebase/storage";
 
 const config = {
@@ -16,37 +16,3 @@ const config = {
 export const auth = firebase.auth();
 export const storage = firebase.storage();
 export const Firebase = firebase;
-
-// Sign Up
-export const EmailSignUp = async (email: string, password: string) => {
-  try {
-    await auth.createUserWithEmailAndPassword(email, password);
-  } catch (err) {
-    alert(err);
-  }
-};
-
-// Login
-export const GoogleLogin = async () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  try {
-    await auth.signInWithPopup(provider);
-  } catch (err) {
-    alert(err);
-  }
-};
-
-export const EmailLogin = async (email: string, password: string) => {
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-  } catch (err) {
-    alert(err);
-  }
-};
-
-// Logout
-export const Logout = () => {
-  auth.signOut().then(() => {
-    window.location.href = "/login";
-  });
-};

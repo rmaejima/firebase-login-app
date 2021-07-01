@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { Logout } from "utils/firebase";
+import { logout } from "utils/logout";
 import { AuthContext } from "contexts/Auth";
 import { LoadingSpinner } from "components/common/LoadingSpinner";
 
@@ -25,7 +25,7 @@ const IndexPage: React.VFC = () => {
           Googleアカウント)を行うアプリ
         </h1>
         <div>
-          <button onClick={() => Logout()}>ログアウト</button>
+          <button onClick={() => logout()}>ログアウト</button>
         </div>
         <div>
           <pre>
