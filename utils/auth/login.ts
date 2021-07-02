@@ -1,8 +1,9 @@
-import { Firebase, auth } from "../firebase";
+import firebase from "firebase";
+import { auth } from "../firebase";
 
 // google
 export const googleLogin = async () => {
-  const provider = new Firebase.auth.GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   try {
     await auth.signInWithPopup(provider);
   } catch (err) {

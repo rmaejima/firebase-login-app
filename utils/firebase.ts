@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import "firebase/storage";
 
 const config = {
@@ -12,8 +13,10 @@ const config = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
-!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
+
 export const auth = firebase.auth();
 export const storage = firebase.storage();
-export const db = firebase.firestore();
-export const Firebase = firebase;
+export const firestore = firebase.firestore();
