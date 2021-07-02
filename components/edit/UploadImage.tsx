@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Firebase, storage } from "utils/firebase";
+import firebase from "firebase";
+import { storage } from "utils/firebase";
 
 interface Props {}
 
@@ -21,24 +22,24 @@ export const UploadImage: React.VFC = () => {
     const storageRef = storage.ref();
     const uploadTask = storageRef.child(`/images/${file.name}`).put(file);
     uploadTask.on(
-      Firebase.storage.TaskEvent.STATE_CHANGED, //event
-      next, //StorageObserver < UploadTaskSnapshot >
-      error, // FirebaseStorageError
-      complete //firebase.Unsubscribe
+      firebase.storage.TaskEvent.STATE_CHANGED, //event
+      next,
+      error,
+      complete
     );
   };
 
-  const next = (snapshot) => {
-    // アップロードの進行度を表示
+  // アップロードの進行度を表示
+  const next = (snapshot: firebase.storage.UploadTaskSnapshot) => {
     const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log(percent + "% done");
     console.log(snapshot);
   };
-  const error = (error) => {
+  const error = (error: firebase.storage.FirebaseStorageError) => {
     console.log(error);
   };
+  // 完了後の処理
   const complete = () => {
-    // 完了後の処理
     storage
       .ref()
       .child(`images/${file.name}`)
