@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { AuthContext } from "contexts/Auth";
-import { UploadImage } from "components/edit/UploadImage";
-import { CreateArticle } from "components/CreateArticle";
-
-// import { storage } from "utils/firebase";
+import { CreateArticle } from "components/edit/CreateArticle";
+import { getArticles } from "utils/article/article";
+import { collectionName } from "consts/collectionName";
 
 const EditPage = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
+  getArticles(collectionName.articles);
 
   useEffect(() => {
     !user && router.push("/login");
@@ -19,7 +19,6 @@ const EditPage = () => {
 
   return (
     <>
-      {/* <UploadImage /> */}
       <CreateArticle />
       <Link href="/">
         <h1>トップへ戻る</h1>
